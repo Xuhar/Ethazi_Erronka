@@ -18,7 +18,6 @@ class User extends Authenticatable
         'Username',      // ahora se usa Username
         'email',
         'password',
-        'Wallet',
     ];
 
     protected $hidden = [
@@ -28,7 +27,6 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'Wallet' => 'decimal:2',
         'password' => 'hashed',
     ];
 
@@ -36,5 +34,10 @@ class User extends Authenticatable
     public function getAuthIdentifierName()
     {
         return 'Username';
+    }
+    
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class, 'idUser', 'idUser');
     }
 }
